@@ -8,6 +8,8 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :ownerships
+
   # Indirect associations
 
 end
