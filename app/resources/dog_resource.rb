@@ -6,6 +6,8 @@ class DogResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :potties
+
   has_many   :ownerships
 
   # Indirect associations
