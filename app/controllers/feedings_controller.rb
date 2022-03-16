@@ -3,7 +3,7 @@ class FeedingsController < ApplicationController
 
   # GET /feedings
   def index
-    @feedings = Feeding.all
+    @feedings = Feeding.page(params[:page]).per(10)
   end
 
   # GET /feedings/1

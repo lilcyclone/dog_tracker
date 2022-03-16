@@ -3,7 +3,7 @@ class PottiesController < ApplicationController
 
   # GET /potties
   def index
-    @potties = Potty.all
+    @potties = Potty.page(params[:page]).per(10)
   end
 
   # GET /potties/1
