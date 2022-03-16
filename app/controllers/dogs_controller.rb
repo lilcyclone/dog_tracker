@@ -3,7 +3,8 @@ class DogsController < ApplicationController
 
   # GET /dogs
   def index
-    @dogs = Dog.page(params[:page]).per(10)
+    @q = Dog.ransack(params[:q])
+    @dogs = @q.result(:distinct => true).includes(:ownerships, :potties, :feedings, :owners).page(params[:page]).per(10)
   end
 
   # GET /dogs/1

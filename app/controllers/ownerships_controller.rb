@@ -5,7 +5,8 @@ class OwnershipsController < ApplicationController
 
   # GET /ownerships
   def index
-    @ownerships = current_user.ownerships.page(params[:page]).per(10)
+    @q = current_user.ownerships.ransack(params[:q])
+    @ownerships = @q.result(:distinct => true).includes(:user, :dog).page(params[:page]).per(10)
   end
 
   # GET /ownerships/1
