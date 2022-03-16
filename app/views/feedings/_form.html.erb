@@ -1,0 +1,83 @@
+<% was_validated = feeding.errors.any? %>
+
+<%= form_with(model: feeding, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for dog_id start -->
+  <div class="form-group">
+    <% dog_class = "form-control" %>
+    <% dog_was_invalid = feeding.errors.include?(:dog) %>
+
+    <% if was_validated %>
+      <% if dog_was_invalid %>
+        <% dog_class << " is-invalid" %>
+      <% else %>
+        <% dog_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :dog_id %>
+    <!-- Input for dog_id start -->
+    <%= f.number_field :dog_id, class: dog_class, placeholder: "Enter dog" %>
+    <!-- Input for dog_id end -->
+    <% if dog_was_invalid %>
+      <% feeding.errors.full_messages_for(:dog).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for dog_id end -->
+  <!-- Label and input for amount start -->
+  <div class="form-group">
+    <% amount_class = "form-control" %>
+    <% amount_was_invalid = feeding.errors.include?(:amount) %>
+
+    <% if was_validated %>
+      <% if amount_was_invalid %>
+        <% amount_class << " is-invalid" %>
+      <% else %>
+        <% amount_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :amount %>
+    <!-- Input for amount start -->
+    <%= f.text_field :amount, class: amount_class, placeholder: "Enter amount" %>
+    <!-- Input for amount end -->
+    <% if amount_was_invalid %>
+      <% feeding.errors.full_messages_for(:amount).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for amount end -->
+  <!-- Label and input for food_name start -->
+  <div class="form-group">
+    <% food_name_class = "form-control" %>
+    <% food_name_was_invalid = feeding.errors.include?(:food_name) %>
+
+    <% if was_validated %>
+      <% if food_name_was_invalid %>
+        <% food_name_class << " is-invalid" %>
+      <% else %>
+        <% food_name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :food_name %>
+    <!-- Input for food_name start -->
+    <%= f.text_field :food_name, class: food_name_class, placeholder: "Enter food name" %>
+    <!-- Input for food_name end -->
+    <% if food_name_was_invalid %>
+      <% feeding.errors.full_messages_for(:food_name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for food_name end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
