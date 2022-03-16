@@ -5,6 +5,8 @@ class Potty < ApplicationRecord
 
   # Validations
 
+  validates :pee_or_poo, :presence => true
+
   validates :pee_or_poo, :inclusion => { :in => [ "pee", "poo", "both" ]  }
 
   # Scopes
