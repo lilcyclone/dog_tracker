@@ -7,7 +7,11 @@
     <dl class="mb-1">
       <dt>Dog</dt>
       <!-- Display dog_id start -->
-      <dd><%= potty.dog_id %></dd>
+      <dd>
+        <% if @potty.dog.present? %>
+          <%= link_to potty.dog, potty.dog %>
+        <% end %>
+      </dd>
       <!-- Display dog_id end -->
 
       <dt>Pee or poo</dt>

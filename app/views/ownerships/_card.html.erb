@@ -7,12 +7,20 @@
     <dl class="mb-1">
       <dt>User</dt>
       <!-- Display user_id start -->
-      <dd><%= ownership.user_id %></dd>
+      <dd>
+        <% if @ownership.user.present? %>
+          <%= link_to ownership.user, ownership.user %>
+        <% end %>
+      </dd>
       <!-- Display user_id end -->
 
       <dt>Dog</dt>
       <!-- Display dog_id start -->
-      <dd><%= ownership.dog_id %></dd>
+      <dd>
+        <% if @ownership.dog.present? %>
+          <%= link_to ownership.dog, ownership.dog %>
+        <% end %>
+      </dd>
       <!-- Display dog_id end -->
 
     </dl>
