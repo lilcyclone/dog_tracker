@@ -1,6 +1,9 @@
 class Dog < ApplicationRecord
   # Direct associations
 
+  has_many   :potties,
+             :dependent => :destroy
+
   has_many   :ownerships,
              :dependent => :destroy
 

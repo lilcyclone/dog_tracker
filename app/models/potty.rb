@@ -1,6 +1,8 @@
 class Potty < ApplicationRecord
   # Direct associations
 
+  belongs_to :dog
+
   # Indirect associations
 
   # Validations
