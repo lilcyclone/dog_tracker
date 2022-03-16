@@ -8,6 +8,8 @@ class FeedingResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :dog
+
   # Indirect associations
 
 end
