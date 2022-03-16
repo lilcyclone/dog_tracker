@@ -14,4 +14,7 @@ class DogResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :owners,
+               resource: UserResource
+
 end
