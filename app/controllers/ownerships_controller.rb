@@ -5,7 +5,7 @@ class OwnershipsController < ApplicationController
 
   # GET /ownerships
   def index
-    @ownerships = Ownership.all
+    @ownerships = current_user.ownerships.page(params[:page]).per(10)
   end
 
   # GET /ownerships/1
