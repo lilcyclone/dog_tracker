@@ -10,6 +10,8 @@ RSpec.describe User, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:dogs) }
+
     end
 
     describe "Validations" do

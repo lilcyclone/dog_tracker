@@ -12,6 +12,10 @@ class Dog < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :owners,
+             :through => :ownerships,
+             :source => :user
+
   # Validations
 
   validates :name, :presence => true

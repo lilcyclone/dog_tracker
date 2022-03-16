@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :dogs,
+             :through => :ownerships,
+             :source => :dog
+
   # Validations
 
   validates :name, :presence => true
