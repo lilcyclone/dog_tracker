@@ -12,5 +12,7 @@ RSpec.describe Potty, type: :model do
 
     describe "Validations" do
 
+    it { should validate_inclusion_of(:pee_or_poo).in_array([ "pee", "poo", "both" ]) }
+
     end
 end
