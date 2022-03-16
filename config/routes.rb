@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "dogs#index"
   resources :potties
   resources :feedings
   resources :ownerships
