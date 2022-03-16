@@ -4,6 +4,8 @@ RSpec.describe Dog, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:feedings) }
+
     it { should have_many(:potties) }
 
     it { should have_many(:ownerships) }

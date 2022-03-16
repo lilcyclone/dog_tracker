@@ -1,6 +1,9 @@
 class Dog < ApplicationRecord
   # Direct associations
 
+  has_many   :feedings,
+             :dependent => :destroy
+
   has_many   :potties,
              :dependent => :destroy
 
