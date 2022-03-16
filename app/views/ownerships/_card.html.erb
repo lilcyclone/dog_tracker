@@ -24,16 +24,20 @@
 
       <!-- Edit link ownership start -->
       <div class="col">
-        <%= link_to edit_ownership_url(ownership), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @ownership.user %>
+          <%= link_to edit_ownership_url(ownership), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link ownership end -->
 
       <!-- Delete link ownership start -->
       <div class="col">
-        <%= link_to ownership, method: :delete, data: { confirm: "Do you really want to delete this ownership?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @ownership.user %>
+          <%= link_to ownership, method: :delete, data: { confirm: "Do you really want to delete this ownership?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link ownership end -->

@@ -1,4 +1,6 @@
 class OwnershipsController < ApplicationController
+  before_action :current_user_must_be_ownership_user, only: [:edit, :update, :destroy] 
+
   before_action :set_ownership, only: [:show, :edit, :update, :destroy]
 
   # GET /ownerships
@@ -57,6 +59,14 @@ class OwnershipsController < ApplicationController
 
 
   private
+
+  def current_user_must_be_ownership_user
+    set_ownership
+    unless current_user == @ownership.user
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_ownership
       @ownership = Ownership.find(params[:id])
