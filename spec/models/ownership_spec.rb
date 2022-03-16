@@ -4,6 +4,8 @@ RSpec.describe Ownership, type: :model do
   
     describe "Direct Associations" do
 
+    it { should belong_to(:dog) }
+
     it { should belong_to(:user) }
 
     end

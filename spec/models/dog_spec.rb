@@ -4,6 +4,8 @@ RSpec.describe Dog, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:ownerships) }
+
     end
 
     describe "InDirect Associations" do
