@@ -42,8 +42,14 @@ class PottiesController < ApplicationController
   # DELETE /potties/1
   def destroy
     @potty.destroy
-    redirect_to potties_url, notice: 'Potty was successfully destroyed.'
+    message = "Potty was successfully deleted."
+    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referrer, notice: message
+    else
+      redirect_to potties_url, notice: message
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
