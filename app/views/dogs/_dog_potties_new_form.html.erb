@@ -1,0 +1,22 @@
+<!-- Form potty start -->
+<%= form_with(model: @potty, local: true) do |f| %>
+<!-- Form potty end -->
+
+  <!-- Label and input for dog_id start -->
+  <!-- Input for dog_id start -->
+  <%= f.hidden_field :dog_id, value: @dog.id %>
+  <!-- Input for dog_id end -->
+  <!-- Label and input for dog_id end -->
+
+  <!-- Label and input for pee_or_poo start -->
+  <div class="form-group">
+    <%= f.label :pee_or_poo %>
+
+    <!-- Input for pee_or_poo start -->
+    <%= f.text_field :pee_or_poo, class: "form-control" %>
+    <!-- Input for pee_or_poo end -->
+  </div>
+  <!-- Label and input for pee_or_poo end -->
+
+  <%= f.submit "Create potty", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

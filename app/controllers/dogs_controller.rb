@@ -8,6 +8,9 @@ class DogsController < ApplicationController
 
   # GET /dogs/1
   def show
+    @feeding = Feeding.new
+    @potty = Potty.new
+    @ownership = Ownership.new
   end
 
   # GET /dogs/new

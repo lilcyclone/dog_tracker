@@ -24,7 +24,12 @@ class FeedingsController < ApplicationController
     @feeding = Feeding.new(feeding_params)
 
     if @feeding.save
-      redirect_to @feeding, notice: 'Feeding was successfully created.'
+      message = 'Feeding was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @feeding, notice: message
+      end
     else
       render :new
     end

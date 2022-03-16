@@ -24,7 +24,12 @@ class OwnershipsController < ApplicationController
     @ownership = Ownership.new(ownership_params)
 
     if @ownership.save
-      redirect_to @ownership, notice: 'Ownership was successfully created.'
+      message = 'Ownership was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @ownership, notice: message
+      end
     else
       render :new
     end
