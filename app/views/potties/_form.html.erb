@@ -1,0 +1,57 @@
+<% was_validated = potty.errors.any? %>
+
+<%= form_with(model: potty, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for dog_id start -->
+  <div class="form-group">
+    <% dog_class = "form-control" %>
+    <% dog_was_invalid = potty.errors.include?(:dog) %>
+
+    <% if was_validated %>
+      <% if dog_was_invalid %>
+        <% dog_class << " is-invalid" %>
+      <% else %>
+        <% dog_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :dog_id %>
+    <!-- Input for dog_id start -->
+    <%= f.number_field :dog_id, class: dog_class, placeholder: "Enter dog" %>
+    <!-- Input for dog_id end -->
+    <% if dog_was_invalid %>
+      <% potty.errors.full_messages_for(:dog).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for dog_id end -->
+  <!-- Label and input for pee_or_poo start -->
+  <div class="form-group">
+    <% pee_or_poo_class = "form-control" %>
+    <% pee_or_poo_was_invalid = potty.errors.include?(:pee_or_poo) %>
+
+    <% if was_validated %>
+      <% if pee_or_poo_was_invalid %>
+        <% pee_or_poo_class << " is-invalid" %>
+      <% else %>
+        <% pee_or_poo_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :pee_or_poo %>
+    <!-- Input for pee_or_poo start -->
+    <%= f.text_field :pee_or_poo, class: pee_or_poo_class, placeholder: "Enter pee or poo" %>
+    <!-- Input for pee_or_poo end -->
+    <% if pee_or_poo_was_invalid %>
+      <% potty.errors.full_messages_for(:pee_or_poo).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for pee_or_poo end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

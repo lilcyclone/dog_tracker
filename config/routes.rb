@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :potties
   resources :feedings
   resources :ownerships
   resources :dogs

@@ -1,0 +1,46 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Potty #<%= potty.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Dog</dt>
+      <!-- Display dog_id start -->
+      <dd><%= potty.dog_id %></dd>
+      <!-- Display dog_id end -->
+
+      <dt>Pee or poo</dt>
+      <!-- Display pee_or_poo start -->
+      <dd><%= potty.pee_or_poo %></dd>
+      <!-- Display pee_or_poo end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back potty, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link potty start -->
+      <div class="col">
+        <%= link_to edit_potty_url(potty), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link potty end -->
+
+      <!-- Delete link potty start -->
+      <div class="col">
+        <%= link_to potty, method: :delete, data: { confirm: "Do you really want to delete this potty?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link potty end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(potty.updated_at) %> ago
+  </div>
+</div>
