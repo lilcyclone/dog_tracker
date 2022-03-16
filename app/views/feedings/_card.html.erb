@@ -6,23 +6,17 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Dog</dt>
-      <!-- Display dog_id start -->
       <dd>
         <% if @feeding.dog.present? %>
           <%= link_to feeding.dog, feeding.dog %>
         <% end %>
       </dd>
-      <!-- Display dog_id end -->
 
       <dt>Amount</dt>
-      <!-- Display amount start -->
       <dd><%= feeding.amount %></dd>
-      <!-- Display amount end -->
 
       <dt>Food name</dt>
-      <!-- Display food_name start -->
       <dd><%= feeding.food_name %></dd>
-      <!-- Display food_name end -->
 
     </dl>
 
@@ -31,21 +25,17 @@
         <%= link_to_show_or_back feeding, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link feeding start -->
       <div class="col">
         <%= link_to edit_feeding_url(feeding), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link feeding end -->
 
-      <!-- Delete link feeding start -->
       <div class="col">
         <%= link_to feeding, method: :delete, data: { confirm: "Do you really want to delete this feeding?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link feeding end -->
     </div>
   </div>
 

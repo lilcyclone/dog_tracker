@@ -1,7 +1,6 @@
 <% was_validated = feeding.errors.any? %>
 
 <%= form_with(model: feeding, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for dog_id start -->
   <div class="form-group">
     <% dog_class = "form-control" %>
     <% dog_was_invalid = feeding.errors.include?(:dog) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :dog_id %>
-    <!-- Input for dog_id start -->
     <%= f.collection_select :dog_id, Dog.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for dog_id end -->
     <% if dog_was_invalid %>
       <% feeding.errors.full_messages_for(:dog).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for dog_id end -->
-  <!-- Label and input for amount start -->
   <div class="form-group">
     <% amount_class = "form-control" %>
     <% amount_was_invalid = feeding.errors.include?(:amount) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :amount %>
-    <!-- Input for amount start -->
     <%= f.text_field :amount, class: amount_class, placeholder: "Enter amount" %>
-    <!-- Input for amount end -->
     <% if amount_was_invalid %>
       <% feeding.errors.full_messages_for(:amount).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for amount end -->
-  <!-- Label and input for food_name start -->
   <div class="form-group">
     <% food_name_class = "form-control" %>
     <% food_name_was_invalid = feeding.errors.include?(:food_name) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :food_name %>
-    <!-- Input for food_name start -->
     <%= f.text_field :food_name, class: food_name_class, placeholder: "Enter food name" %>
-    <!-- Input for food_name end -->
     <% if food_name_was_invalid %>
       <% feeding.errors.full_messages_for(:food_name).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,6 +67,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for food_name end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

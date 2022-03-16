@@ -6,22 +6,18 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>User</dt>
-      <!-- Display user_id start -->
       <dd>
         <% if @ownership.user.present? %>
           <%= link_to ownership.user, ownership.user %>
         <% end %>
       </dd>
-      <!-- Display user_id end -->
 
       <dt>Dog</dt>
-      <!-- Display dog_id start -->
       <dd>
         <% if @ownership.dog.present? %>
           <%= link_to ownership.dog, ownership.dog %>
         <% end %>
       </dd>
-      <!-- Display dog_id end -->
 
     </dl>
 
@@ -30,7 +26,6 @@
         <%= link_to_show_or_back ownership, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link ownership start -->
       <div class="col">
         <% if current_user == @ownership.user %>
           <%= link_to edit_ownership_url(ownership), class: "btn btn-block btn-sm btn-outline-secondary" do %>
@@ -38,9 +33,7 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Edit link ownership end -->
 
-      <!-- Delete link ownership start -->
       <div class="col">
         <% if current_user == @ownership.user %>
           <%= link_to ownership, method: :delete, data: { confirm: "Do you really want to delete this ownership?" }, class: "btn btn-block btn-outline-secondary" do %>
@@ -48,7 +41,6 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Delete link ownership end -->
     </div>
   </div>
 

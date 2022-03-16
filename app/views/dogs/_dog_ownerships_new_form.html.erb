@@ -1,18 +1,8 @@
-<!-- Form ownership start -->
 <%= form_with(model: @ownership, local: true) do |f| %>
-<!-- Form ownership end -->
 
-  <!-- Label and input for user_id start -->
-  <!-- Input for "user_id" start -->
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <!-- Input for "user_id" end -->
-  <!-- Label and input for user_id end -->
 
-  <!-- Label and input for dog_id start -->
-  <!-- Input for dog_id start -->
   <%= f.hidden_field :dog_id, value: @dog.id %>
-  <!-- Input for dog_id end -->
-  <!-- Label and input for dog_id end -->
 
   <%= f.submit "Create ownership", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

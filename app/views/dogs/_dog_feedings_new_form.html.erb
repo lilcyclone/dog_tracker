@@ -1,32 +1,18 @@
-<!-- Form feeding start -->
 <%= form_with(model: @feeding, local: true) do |f| %>
-<!-- Form feeding end -->
 
-  <!-- Label and input for dog_id start -->
-  <!-- Input for dog_id start -->
   <%= f.hidden_field :dog_id, value: @dog.id %>
-  <!-- Input for dog_id end -->
-  <!-- Label and input for dog_id end -->
 
-  <!-- Label and input for amount start -->
   <div class="form-group">
     <%= f.label :amount %>
 
-    <!-- Input for amount start -->
     <%= f.text_field :amount, class: "form-control" %>
-    <!-- Input for amount end -->
   </div>
-  <!-- Label and input for amount end -->
 
-  <!-- Label and input for food_name start -->
   <div class="form-group">
     <%= f.label :food_name %>
 
-    <!-- Input for food_name start -->
     <%= f.text_field :food_name, class: "form-control" %>
-    <!-- Input for food_name end -->
   </div>
-  <!-- Label and input for food_name end -->
 
   <%= f.submit "Create feeding", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

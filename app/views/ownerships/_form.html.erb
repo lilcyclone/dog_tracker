@@ -1,12 +1,7 @@
 <% was_validated = ownership.errors.any? %>
 
 <%= form_with(model: ownership, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for user_id start -->
-  <!-- Input for "user_id" start -->
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <!-- Input for "user_id" end -->
-  <!-- Label and input for user_id end -->
-  <!-- Label and input for dog_id start -->
   <div class="form-group">
     <% dog_class = "form-control" %>
     <% dog_was_invalid = ownership.errors.include?(:dog) %>
@@ -20,9 +15,7 @@
     <% end %>
 
     <%= f.label :dog_id %>
-    <!-- Input for dog_id start -->
     <%= f.collection_select :dog_id, Dog.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for dog_id end -->
     <% if dog_was_invalid %>
       <% ownership.errors.full_messages_for(:dog).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -31,6 +24,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for dog_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>
