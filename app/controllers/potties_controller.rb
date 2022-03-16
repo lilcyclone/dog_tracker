@@ -1,15 +1,14 @@
 class PottiesController < ApplicationController
-  before_action :set_potty, only: [:show, :edit, :update, :destroy]
+  before_action :set_potty, only: %i[show edit update destroy]
 
   # GET /potties
   def index
     @q = Potty.ransack(params[:q])
-    @potties = @q.result(:distinct => true).includes(:dog).page(params[:page]).per(10)
+    @potties = @q.result(distinct: true).includes(:dog).page(params[:page]).per(10)
   end
 
   # GET /potties/1
-  def show
-  end
+  def show; end
 
   # GET /potties/new
   def new
@@ -17,17 +16,16 @@ class PottiesController < ApplicationController
   end
 
   # GET /potties/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /potties
   def create
     @potty = Potty.new(potty_params)
 
     if @potty.save
-      message = 'Potty was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Potty was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @potty, notice: message
       end
@@ -39,7 +37,7 @@ class PottiesController < ApplicationController
   # PATCH/PUT /potties/1
   def update
     if @potty.update(potty_params)
-      redirect_to @potty, notice: 'Potty was successfully updated.'
+      redirect_to @potty, notice: "Potty was successfully updated."
     else
       render :edit
     end
@@ -49,22 +47,22 @@ class PottiesController < ApplicationController
   def destroy
     @potty.destroy
     message = "Potty was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to potties_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_potty
-      @potty = Potty.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def potty_params
-      params.require(:potty).permit(:dog_id, :pee_or_poo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_potty
+    @potty = Potty.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def potty_params
+    params.require(:potty).permit(:dog_id, :pee_or_poo)
+  end
 end

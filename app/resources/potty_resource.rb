@@ -10,5 +10,4 @@ class PottyResource < ApplicationResource
   belongs_to :dog
 
   # Indirect associations
-
 end

@@ -1,17 +1,18 @@
 class OwnershipsController < ApplicationController
-  before_action :current_user_must_be_ownership_user, only: [:edit, :update, :destroy] 
+  before_action :current_user_must_be_ownership_user,
+                only: %i[edit update destroy]
 
-  before_action :set_ownership, only: [:show, :edit, :update, :destroy]
+  before_action :set_ownership, only: %i[show edit update destroy]
 
   # GET /ownerships
   def index
     @q = current_user.ownerships.ransack(params[:q])
-    @ownerships = @q.result(:distinct => true).includes(:user, :dog).page(params[:page]).per(10)
+    @ownerships = @q.result(distinct: true).includes(:user,
+                                                     :dog).page(params[:page]).per(10)
   end
 
   # GET /ownerships/1
-  def show
-  end
+  def show; end
 
   # GET /ownerships/new
   def new
@@ -19,17 +20,16 @@ class OwnershipsController < ApplicationController
   end
 
   # GET /ownerships/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /ownerships
   def create
     @ownership = Ownership.new(ownership_params)
 
     if @ownership.save
-      message = 'Ownership was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Ownership was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @ownership, notice: message
       end
@@ -41,7 +41,7 @@ class OwnershipsController < ApplicationController
   # PATCH/PUT /ownerships/1
   def update
     if @ownership.update(ownership_params)
-      redirect_to @ownership, notice: 'Ownership was successfully updated.'
+      redirect_to @ownership, notice: "Ownership was successfully updated."
     else
       render :edit
     end
@@ -51,30 +51,30 @@ class OwnershipsController < ApplicationController
   def destroy
     @ownership.destroy
     message = "Ownership was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to ownerships_url, notice: message
     end
   end
-
 
   private
 
   def current_user_must_be_ownership_user
     set_ownership
     unless current_user == @ownership.user
-      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+      redirect_back fallback_location: root_path,
+                    alert: "You are not authorized for that."
     end
   end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ownership
-      @ownership = Ownership.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ownership
+    @ownership = Ownership.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def ownership_params
-      params.require(:ownership).permit(:user_id, :dog_id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def ownership_params
+    params.require(:ownership).permit(:user_id, :dog_id)
+  end
 end

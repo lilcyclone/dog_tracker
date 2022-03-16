@@ -1,15 +1,14 @@
 class FeedingsController < ApplicationController
-  before_action :set_feeding, only: [:show, :edit, :update, :destroy]
+  before_action :set_feeding, only: %i[show edit update destroy]
 
   # GET /feedings
   def index
     @q = Feeding.ransack(params[:q])
-    @feedings = @q.result(:distinct => true).includes(:dog).page(params[:page]).per(10)
+    @feedings = @q.result(distinct: true).includes(:dog).page(params[:page]).per(10)
   end
 
   # GET /feedings/1
-  def show
-  end
+  def show; end
 
   # GET /feedings/new
   def new
@@ -17,17 +16,16 @@ class FeedingsController < ApplicationController
   end
 
   # GET /feedings/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /feedings
   def create
     @feeding = Feeding.new(feeding_params)
 
     if @feeding.save
-      message = 'Feeding was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Feeding was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @feeding, notice: message
       end
@@ -39,7 +37,7 @@ class FeedingsController < ApplicationController
   # PATCH/PUT /feedings/1
   def update
     if @feeding.update(feeding_params)
-      redirect_to @feeding, notice: 'Feeding was successfully updated.'
+      redirect_to @feeding, notice: "Feeding was successfully updated."
     else
       render :edit
     end
@@ -49,22 +47,22 @@ class FeedingsController < ApplicationController
   def destroy
     @feeding.destroy
     message = "Feeding was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to feedings_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_feeding
-      @feeding = Feeding.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def feeding_params
-      params.require(:feeding).permit(:dog_id, :amount, :food_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_feeding
+    @feeding = Feeding.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def feeding_params
+    params.require(:feeding).permit(:dog_id, :amount, :food_name)
+  end
 end

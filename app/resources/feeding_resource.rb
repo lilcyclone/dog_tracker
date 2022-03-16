@@ -11,5 +11,4 @@ class FeedingResource < ApplicationResource
   belongs_to :dog
 
   # Indirect associations
-
 end

@@ -12,5 +12,4 @@ class Feeding < ApplicationRecord
   def to_s
     dog.to_s
   end
-
 end

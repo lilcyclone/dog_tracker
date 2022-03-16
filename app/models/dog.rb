@@ -2,28 +2,27 @@ class Dog < ApplicationRecord
   # Direct associations
 
   has_many   :feedings,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :potties,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :ownerships,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
   has_many   :owners,
-             :through => :ownerships,
-             :source => :user
+             through: :ownerships,
+             source: :user
 
   # Validations
 
-  validates :name, :presence => true
+  validates :name, presence: true
 
   # Scopes
 
   def to_s
     name
   end
-
 end

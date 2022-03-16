@@ -8,10 +8,9 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :ownerships
+  has_many :ownerships
 
   # Indirect associations
 
   many_to_many :dogs
-
 end

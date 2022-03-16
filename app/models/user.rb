@@ -1,20 +1,19 @@
 class User < ApplicationRecord
-  
   include JwtToken
-# Direct associations
+  # Direct associations
 
   has_many   :ownerships,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
   has_many   :dogs,
-             :through => :ownerships,
-             :source => :dog
+             through: :ownerships,
+             source: :dog
 
   # Validations
 
-  validates :name, :presence => true
+  validates :name, presence: true
 
   # Scopes
 

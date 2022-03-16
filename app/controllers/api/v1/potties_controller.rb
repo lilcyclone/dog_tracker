@@ -13,7 +13,7 @@ class Api::V1::PottiesController < Api::V1::GraphitiController
     potty = PottyResource.build(params)
 
     if potty.save
-      render jsonapi: potty, status: 201
+      render jsonapi: potty, status: :created
     else
       render jsonapi_errors: potty
     end
@@ -33,7 +33,7 @@ class Api::V1::PottiesController < Api::V1::GraphitiController
     potty = PottyResource.find(params)
 
     if potty.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: potty
     end

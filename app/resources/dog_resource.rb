@@ -16,5 +16,4 @@ class DogResource < ApplicationResource
 
   many_to_many :owners,
                resource: UserResource
-
 end

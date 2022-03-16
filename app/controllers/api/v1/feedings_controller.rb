@@ -13,7 +13,7 @@ class Api::V1::FeedingsController < Api::V1::GraphitiController
     feeding = FeedingResource.build(params)
 
     if feeding.save
-      render jsonapi: feeding, status: 201
+      render jsonapi: feeding, status: :created
     else
       render jsonapi_errors: feeding
     end
@@ -33,7 +33,7 @@ class Api::V1::FeedingsController < Api::V1::GraphitiController
     feeding = FeedingResource.find(params)
 
     if feeding.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: feeding
     end

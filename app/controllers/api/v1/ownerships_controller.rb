@@ -13,7 +13,7 @@ class Api::V1::OwnershipsController < Api::V1::GraphitiController
     ownership = OwnershipResource.build(params)
 
     if ownership.save
-      render jsonapi: ownership, status: 201
+      render jsonapi: ownership, status: :created
     else
       render jsonapi_errors: ownership
     end
@@ -33,7 +33,7 @@ class Api::V1::OwnershipsController < Api::V1::GraphitiController
     ownership = OwnershipResource.find(params)
 
     if ownership.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: ownership
     end
