@@ -7,6 +7,8 @@ class OwnershipResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :dog
+
   belongs_to :user
 
   # Indirect associations
