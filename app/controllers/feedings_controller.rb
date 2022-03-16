@@ -1,24 +1,19 @@
 class FeedingsController < ApplicationController
   before_action :set_feeding, only: %i[show edit update destroy]
 
-  # GET /feedings
   def index
     @q = Feeding.ransack(params[:q])
     @feedings = @q.result(distinct: true).includes(:dog).page(params[:page]).per(10)
   end
 
-  # GET /feedings/1
   def show; end
 
-  # GET /feedings/new
   def new
     @feeding = Feeding.new
   end
 
-  # GET /feedings/1/edit
   def edit; end
 
-  # POST /feedings
   def create
     @feeding = Feeding.new(feeding_params)
 
@@ -34,7 +29,6 @@ class FeedingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /feedings/1
   def update
     if @feeding.update(feeding_params)
       redirect_to @feeding, notice: "Feeding was successfully updated."
@@ -43,7 +37,6 @@ class FeedingsController < ApplicationController
     end
   end
 
-  # DELETE /feedings/1
   def destroy
     @feeding.destroy
     message = "Feeding was successfully deleted."
@@ -56,12 +49,10 @@ class FeedingsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_feeding
     @feeding = Feeding.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def feeding_params
     params.require(:feeding).permit(:dog_id, :amount, :food_name)
   end

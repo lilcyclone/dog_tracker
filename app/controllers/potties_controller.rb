@@ -1,24 +1,19 @@
 class PottiesController < ApplicationController
   before_action :set_potty, only: %i[show edit update destroy]
 
-  # GET /potties
   def index
     @q = Potty.ransack(params[:q])
     @potties = @q.result(distinct: true).includes(:dog).page(params[:page]).per(10)
   end
 
-  # GET /potties/1
   def show; end
 
-  # GET /potties/new
   def new
     @potty = Potty.new
   end
 
-  # GET /potties/1/edit
   def edit; end
 
-  # POST /potties
   def create
     @potty = Potty.new(potty_params)
 
@@ -34,7 +29,6 @@ class PottiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /potties/1
   def update
     if @potty.update(potty_params)
       redirect_to @potty, notice: "Potty was successfully updated."
@@ -43,7 +37,6 @@ class PottiesController < ApplicationController
     end
   end
 
-  # DELETE /potties/1
   def destroy
     @potty.destroy
     message = "Potty was successfully deleted."
@@ -56,12 +49,10 @@ class PottiesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_potty
     @potty = Potty.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def potty_params
     params.require(:potty).permit(:dog_id, :pee_or_poo)
   end
